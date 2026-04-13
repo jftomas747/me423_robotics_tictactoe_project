@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="hero-card">
-        <img src="assets/qarm-team-board.jpg" alt="QArm tic-tac-toe setup with blue and white character tokens on the board" />
+        <img src="assets/qarm-team-board.jpg" alt="QArm tic-tac-toe setup with blue and gray character tokens on the board" />
         <div class="hero-caption">Final project setup showing the QArm, the tic-tac-toe board, and the custom printed character pieces.</div>
       </div>
     </section>
@@ -61,16 +61,49 @@
     <section class="section" id="summary">
       <h2>Summary</h2>
       <p>
-        The original idea was a robotic color segregator, but the scope was expanded into a tic-tac-toe playing robot after feedback that the initial concept was too simple. The final system uses the QArm and its RGB camera to detect the board and piece states, then place the robot's next move based on the current game state. The result combines robotic movement, camera-based detection, and game logic in one platform.
+        This project began as a basic automated robotic-arm segregator that would identify objects by color and place them into different locations. As the quarter went on, the scope of the project changed significantly. Instead of only making the robot do a simple pick-and-place sorting task, our team expanded the project into a robotic arm that can play tic-tac-toe against a human player. The robot uses the QArm, along with its RGB camera, to view the board, detect the game pieces, and make moves based on the state of the game. The human player uses blue 3D printed character pieces, while the robot uses gold pieces modeled after Dr. Mohammad Hasan. Overall, the final project became more challenging because it combines robotic movement, camera-based detection, 3D printed game pieces, and game decision-making into one system.
       </p>
       <div class="quick-grid" style="margin-top: 1rem;">
         <div class="quick-card"><div class="quick-value">4 DOF</div><p>Quanser QArm articulated serial manipulator.</p></div>
         <div class="quick-card"><div class="quick-value">RGB</div><p>Camera-based board and token detection for gameplay state recognition.</p></div>
         <div class="quick-card"><div class="quick-value">Minimax</div><p>Turn-based strategy algorithm used to choose the robot's best move.</p></div>
-        <div class="quick-card"><div class="quick-value">Blue + Gold</div><p>Blue tokens for the human player and gold tokens for the robot.</p></div>
+        <div class="quick-card"><div class="quick-value">Blue vs Gold</div><p>Blue tokens for the human player and gold tokens for the robot.</p></div>
       </div>
     </section>
 
+        <section class="section grid-2" id="motivation">
+      <div>
+        <h2>Motivation</h2>
+        <p>
+          Our original motivation was to build a robotic arm that could autonomously sort colored objects from different locations. While that idea was a good starting point, it was also somewhat limited in complexity. After discussing the project with Dr. Hasan, it became clear that the original segregator concept was too simple for the goals of the course. Because of that, our team started brainstorming ways to make better use of the robotic arm and its RGB camera.
+        </p>
+        <p>
+          We decided that tic-tac-toe would be a better application because it still involves pick-and-place motion, but it also adds vision, position detection, and decision-making. The robot does not just move random objects anymore. It has to recognize the board, understand where pieces are located, and place a game piece in the correct square without disturbing the others. This made the project more interesting and more representative of a real mechatronics system.
+        </p>
+        <p>
+          Another motivation for this change was that we had already 3D printed human character pieces during the early segregator phase. Instead of throwing away that work, we decided to keep the characters and turn them into tic-tac-toe tokens. This helped connect the old project idea with the new one. The blue character pieces meant for the human player represent members of our team, while the robot uses gold pieces modeled after Dr. Hasan, giving the project a more personal and lighthearted theme.
+        </p>
+      </div>
+      <div class="figure">
+        <img src="assets/staging-area.png" alt="Gold 3D printed character tokens labeled H1 through H5 in the staging area" />
+        <div class="caption">Gold character pieces in the staging area. These printed tokens helped carry the original segregator idea into the final tic-tac-toe version of the project.</div>
+      </div>
+    </section>
+
+    <section class="section" id="background">
+      <h2>Background</h2>
+      <p>
+        At the beginning of the project, our team planned to create a robotic color segregator. The goal was for the arm to detect objects by color and move them into separate locations. To test that idea, we designed and 3D printed small human-shaped pieces in different colors. These pieces were originally meant to act as sample objects for the sorting process. The first version of the project mostly focused on the basic robotic functions, such as arm movement, pick-and-place actions, and color detection.
+      </p>
+      <p>
+        However, once we received feedback that the project needed more depth, we changed direction. Instead of just sorting pieces by color, we decided to use the same robotic and vision concepts in a more advanced way. The project became a tic-tac-toe robot that uses camera input to view the board and identify positions, then uses the robotic arm to place a piece in the correct square. This new version still uses color detection and object handling, but now those features support a larger system involving board recognition, game logic, and more precise arm movement.
+      </p>
+      <p>
+        This project also builds on multiple areas of mechatronics. Mechanically, the arm must be able to move accurately within its workspace and place pieces without hitting others. From a controls standpoint, the robot must move smoothly and repeatably to known board coordinates. From a vision standpoint, the RGB camera is used to detect pieces and help determine the state of the game. Finally, from a programming standpoint, the system must combine movement control, image processing, and a tic-tac-toe decision algorithm. Because of these combined elements, the updated project is much more advanced than the initial segregator idea and better reflects the type of engineering problem-solving expected in this course.
+      </p>
+    </section>
+
+    
     <section class="section" id="team">
       <h2>Project team</h2>
       <div class="team-grid">
