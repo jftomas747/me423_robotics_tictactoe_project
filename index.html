@@ -14,7 +14,7 @@
         <ul>
           <li><a class="active" href="index.html">Overview</a></li>
           <li><a href="hardware.html">Hardware</a></li>
-          <li><a href="vision-control.html">Vision & Control</a></li>
+          <li><a href="vision-control.html">Vision &amp; Control</a></li>
           <li><a href="results.html">Results</a></li>
           <li><a href="gallery.html">Gallery</a></li>
         </ul>
@@ -26,7 +26,7 @@
     <section class="hero">
       <div class="hero-copy">
         <div class="kicker">ME 423 Final Project · Blue vs Gold Tic-Tac-Toe</div>
-        <h1>Autonomous QArm tic-tac-toe robot</h1>
+        <h1>Autonomous QArm<br />tic-tac-toe robot</h1>
         <p>
           This project evolved from a color-sorting robot into an interactive tic-tac-toe system using a Quanser QArm, RGB vision, inverse kinematics, and minimax game logic. The robot uses gold tokens against a human player using blue tokens, creating a mechatronics demonstration that combines motion control, perception, and strategy.
         </p>
@@ -51,6 +51,8 @@
     <nav class="local-nav section" aria-label="Page sections">
       <div class="inner">
         <a href="#summary">Summary</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#background">Background</a>
         <a href="#team">Team</a>
         <a href="#demo">Video demo</a>
         <a href="#system">System overview</a>
@@ -64,14 +66,26 @@
         This project began as a basic automated robotic-arm segregator that would identify objects by color and place them into different locations. As the quarter went on, the scope of the project changed significantly. Instead of only making the robot do a simple pick-and-place sorting task, our team expanded the project into a robotic arm that can play tic-tac-toe against a human player. The robot uses the QArm, along with its RGB camera, to view the board, detect the game pieces, and make moves based on the state of the game. The human player uses blue 3D printed character pieces, while the robot uses gold pieces modeled after Dr. Mohammad Hasan. Overall, the final project became more challenging because it combines robotic movement, camera-based detection, 3D printed game pieces, and game decision-making into one system.
       </p>
       <div class="quick-grid" style="margin-top: 1rem;">
-        <div class="quick-card"><div class="quick-value">4 DOF</div><p>Quanser QArm articulated serial manipulator.</p></div>
-        <div class="quick-card"><div class="quick-value">RGB</div><p>Camera-based board and token detection for gameplay state recognition.</p></div>
-        <div class="quick-card"><div class="quick-value">Minimax</div><p>Turn-based strategy algorithm used to choose the robot's best move.</p></div>
-        <div class="quick-card"><div class="quick-value">Blue vs Gold</div><p>Blue tokens for the human player and gold tokens for the robot.</p></div>
+        <div class="quick-card">
+          <div class="quick-value">4 DOF</div>
+          <p>Quanser QArm articulated serial manipulator.</p>
+        </div>
+        <div class="quick-card">
+          <div class="quick-value">RGB</div>
+          <p>Camera-based board and token detection for gameplay state recognition.</p>
+        </div>
+        <div class="quick-card">
+          <div class="quick-value">Minimax</div>
+          <p>Turn-based strategy algorithm used to choose the robot's best move.</p>
+        </div>
+        <div class="quick-card">
+          <div class="quick-value">Blue vs Gold</div>
+          <p>Blue tokens for the human player and gold tokens for the robot.</p>
+        </div>
       </div>
     </section>
 
-        <section class="section grid-2" id="motivation">
+    <section class="section grid-2" id="motivation">
       <div>
         <h2>Motivation</h2>
         <p>
@@ -103,18 +117,17 @@
       </p>
     </section>
 
-    
     <section class="section" id="team">
       <h2>Project team</h2>
       <div class="team-grid">
-        <div class="team-card"><h3>John Tomas</h3></p></div>
-        <div class="team-card"><h3>Erik Heuchert</h3></p></div>
+        <div class="team-card"><h3>John Tomas</h3></div>
+        <div class="team-card"><h3>Erik Heuchert</h3></div>
         <div class="team-card"><h3>Lucas Heuchert</h3></div>
         <div class="team-card"><h3>Matthew Moore</h3></div>
         <div class="team-card"><h3>Jacky Liang</h3></div>
       </div>
     </section>
-  
+
     <section class="section grid-2" id="demo">
       <div class="video-card">
         <h2>Embedded video demo</h2>
@@ -160,6 +173,5 @@
       </div>
     </section>
   </main>
-
 </body>
 </html>
