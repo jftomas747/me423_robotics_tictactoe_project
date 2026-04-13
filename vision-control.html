@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QArm Tic-Tac-Toe | Vision and Control</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">QArm Tic-Tac-Toe</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="hardware.html">Hardware</a></li>
+          <li><a class="active" href="vision-control.html">Vision & Control</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-intro">
+    <h1>Vision and control</h1>
+    <p>OpenCV perception, contour and centroid logic, game-state updates, and the minimax controller that drives the robot's decisions.</p>
+  </div>
+
+  <main class="page-wrap">
+    <nav class="local-nav section" aria-label="Vision and control sections">
+      <div class="inner">
+        <a href="#color">Color Detection</a>
+        <a href="#contours">Contours and Centroids</a>
+        <a href="#depth">Depth Detection</a>
+        <a href="#algorithm">Tic-Tac-Toe Algorithm</a>
+        <a href="#controller">Game Controller</a>
+      </div>
+    </nav>
+
+    <section class="section" id="color">
+      <h2>Color detection</h2>
+      <p>
+        The perception pipeline relies on OpenCV. Frames from the RGB camera are converted from BGR to HSV, which makes it much easier to tune color boundaries for the gold robot tokens and the blue human tokens. The team used HSV bounds to reduce background interference and create masks for the pieces.
+      </p>
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="card"><h3>Capture</h3><p>The camera connection captures a frame into a NumPy array containing pixel rows, columns, and BGR channels.</p></div>
+        <div class="card"><h3>Convert</h3><p>The frame is converted into HSV so hue, saturation, and brightness can be tuned more directly than raw RGB.</p></div>
+        <div class="card"><h3>Mask</h3><p>HSV boundaries isolate a chosen token color and suppress much of the table and lighting noise.</p></div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="contours">
+      <div class="figure">
+        <img src="assets/contour-detection.png" alt="Contour detection results" />
+        <div class="caption">Contours used to isolate valid game-piece outlines after masking and area filtering.</div>
+      </div>
+      <div class="figure">
+        <img src="assets/centroid-detection.png" alt="Centroid detection results" />
+        <div class="caption">Centroid detection used to convert valid contours into board-relevant piece locations.</div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <h3>Contour and centroid logic</h3>
+        <p>
+          After masking, the code finds contours and filters them by area to reject noise. The remaining contours are used to compute centroids through image moments. Additional helper functions order centroids to match the board and check repeated frames so the game state is based on stable readings rather than one noisy frame.
+        </p>
+      </div>
+      <div class="figure">
+        <img src="assets/centroid-equation.png" alt="Centroid equation used in the project" />
+        <div class="caption">Centroid relationship used to convert contour information into board-space coordinates.</div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="depth">
+      <div class="figure">
+        <img src="assets/depth-colormap.png" alt="Depth colormap from Intel RealSense camera" />
+        <div class="caption">Depth colormap tested during development to try separating similar-colored objects.</div>
+      </div>
+      <div class="card">
+        <h2>Depth detection</h2>
+        <p>
+          The Intel RealSense D415 depth sensor was tested to help distinguish similar-colored objects, but the final project relied mostly on RGB because depth noise made the contour separation unreliable. The report describes attempts to split objects by depth edges, but the token depth variation made that method inconsistent.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="algorithm">
+      <h2>Tic-tac-toe algorithm</h2>
+      <p>
+        The robot uses a minimax algorithm to play perfectly in a two-player, deterministic game. The algorithm recursively evaluates future move sequences and selects the move that maximizes the robot's worst-case outcome, assuming the human player also plays optimally. A win is rewarded more strongly when it happens sooner, while losses are penalized less when they take longer to occur.
+      </p>
+      <div class="callout"><p>The board state is stored in a NumPy array where 0 means empty, 1 means a human move, and 2 means a robot move.</p></div>
+    </section>
+
+    <section class="section" id="controller">
+      <h2>Game controller</h2>
+      <p>
+        A higher-level controller ties the camera functions, robot motion, and game logic together. The loop watches for a new human move, updates the move array, asks the minimax logic for the best robot response, and then sends the arm to pick up and place the correct token. The same controller also handles end-of-game checks for wins and draws.
+      </p>
+      <div class="grid-2" style="margin-top: 1rem;">
+        <div class="card"><h3>Board update</h3><p>Centroids and missing-grid logic are used to infer where the human placed the most recent piece.</p></div>
+        <div class="card"><h3>Robot response</h3><p>The best move is selected from the move array, then executed with the stored coordinate dictionary and motion functions.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">Vision and control page for the QArm tic-tac-toe robot.</div>
+  </footer>
+</body>
+</html>

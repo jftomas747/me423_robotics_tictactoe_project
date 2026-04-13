@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QArm Tic-Tac-Toe | Hardware</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">QArm Tic-Tac-Toe</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a class="active" href="hardware.html">Hardware</a></li>
+          <li><a href="vision-control.html">Vision & Control</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-intro">
+    <h1>Hardware</h1>
+    <p>Physical platform, manipulator geometry, workspace planning, and motion choices that supported the tic-tac-toe robot.</p>
+  </div>
+
+  <main class="page-wrap">
+    <nav class="local-nav section" aria-label="Hardware sections">
+      <div class="inner">
+        <a href="#summary">Hardware Summary</a>
+        <a href="#qarm">QArm Platform</a>
+        <a href="#workspace">Workspace and Deadzone</a>
+        <a href="#kinematics">Kinematics</a>
+        <a href="#motion">Arm Motion</a>
+        <a href="#interference">Interference and Waypoints</a>
+      </div>
+    </nav>
+
+    <section class="section" id="summary">
+      <h2>Hardware Summary</h2>
+      <p>
+        The final design is centered on the Quanser QArm, a 4 degree-of-freedom articulated manipulator with a gripper and RGB-D camera. This hardware stack let the team combine grasping, board observation, and controlled placement in a single compact platform. The hardware choices mattered because the system needed repeatable grasping while tokens appeared at multiple locations across the stage and board.
+      </p>
+      <div class="table-wrap" style="margin-top: 1rem;">
+        <table>
+          <thead>
+            <tr><th>Hardware</th><th>Role in the system</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Quanser QArm 4DOF serial manipulator</td><td>Primary robotic platform used to pick up and place tokens on the tic-tac-toe board.</td></tr>
+            <tr><td>Dual-finger gripper</td><td>Grasps the custom printed game pieces from the stage and releases them into board cells.</td></tr>
+            <tr><td>Intel RealSense D415 camera</td><td>Provides RGB and depth sensing, though the final system relied mainly on RGB because depth was too noisy.</td></tr>
+            <tr><td>Custom printed character pieces</td><td>Blue pieces represent the human player and gold pieces represent the robot.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="qarm">
+      <div class="card">
+        <h2>QArm platform</h2>
+        <p>
+          The QArm is modeled as a roll-pitch-pitch-roll serial manipulator with joints for base, shoulder, elbow, and wrist motion. In this application, the first three joints mainly determine position while the wrist is used mostly to orient the gripper at the target. That split made it easier to treat pickup and placement as mostly position-planning tasks.
+        </p>
+      </div>
+      <div class="figure">
+        <img src="assets/qarm-render.png" alt="Quanser QArm render" />
+        <div class="caption">Quanser QArm 4DOF serial manipulator used for the tic-tac-toe robot.</div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="workspace">
+      <div class="figure">
+        <img src="assets/workspace-deadzone.png" alt="Workspace and deadzone sketch" />
+        <div class="caption">Sketch of the robot workspace and deadzone used to reason about reach and singularity-sensitive regions.</div>
+      </div>
+      <div class="card">
+        <h3>Workspace and deadzone</h3>
+        <p>
+          The workspace defines where the end effector can reach and operate, while the deadzone marks areas where the arm may approach singular behavior. These limits shaped how the stage and board were arranged and influenced the path-planning choices used during game moves.
+        </p>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="kinematics">
+      <div class="figure">
+        <img src="assets/qarm-schematic.png" alt="QArm schematic in home configuration" />
+        <div class="caption">Manipulator schematic used to support the symbolic DH parameter model.</div>
+      </div>
+      <div class="card">
+        <h2>Kinematics</h2>
+        <p>
+          Forward kinematics were described with a standard Denavit-Hartenberg formulation to map joint angles to end-effector pose. Inverse kinematics were derived geometrically by solving the base angle from the horizontal projection and then reducing the remaining problem to a planar two-link system in the radial-vertical plane.
+        </p>
+        <div class="callout">
+          <p>Because wrist rotation mostly changes orientation rather than position, position planning could focus strongly on the first three joints.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="motion">
+      <div class="figure">
+        <img src="assets/staging-area.png" alt="Staging area with robot pieces" />
+        <div class="caption">Robot staging area before pieces are moved onto the board.</div>
+      </div>
+      <div class="figure">
+        <img src="assets/board-labels.png" alt="Board labels for tic-tac-toe cells" />
+        <div class="caption">Board labeling used to connect physical board cells with the game controller logic.</div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <h3>Arm motion approach</h3>
+        <p>
+          The arm motion was defined partly through Quanser inverse kinematics functions and partly through stored joint-angle positions. This worked well because both staging coordinates and board-cell coordinates could be defined numerically and saved in dictionaries for reuse.
+        </p>
+      </div>
+      <div class="figure">
+        <img src="assets/move-function.png" alt="Function for moving the arm to xyz coordinates" />
+        <div class="caption">Control function used to send the arm to target XYZ positions using Quanser support code.</div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="interference">
+      <div class="figure">
+        <img src="assets/coordinate-dictionary.png" alt="Dictionary of coordinates and stored angles" />
+        <div class="caption">Python dictionary used to store staging locations, board targets, and intermediate positions.</div>
+      </div>
+      <div class="card">
+        <h2>Interference and intermediate waypoints</h2>
+        <p>
+          The main hardware problem during gameplay was avoiding collisions with tokens already placed on the board or still waiting in the stage. To prevent that, the team manually taught intermediate positions and then recreated those safe poses through saved joint angles. That added extra path planning without changing the overall move logic.
+        </p>
+        <div class="callout">
+          <p>The report specifically notes that the black box under the end effector caused several interference cases, so diagonal and side-step motions were added before lifting and placing tokens.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">Hardware page styled after the ME405 site structure, updated for the QArm tic-tac-toe project.</div>
+  </footer>
+</body>
+</html>

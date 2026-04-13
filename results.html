@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QArm Tic-Tac-Toe | Results</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">QArm Tic-Tac-Toe</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="hardware.html">Hardware</a></li>
+          <li><a href="vision-control.html">Vision & Control</a></li>
+          <li><a class="active" href="results.html">Results</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-intro">
+    <h1>Results</h1>
+    <p>Performance, successes, limitations, and the main lessons learned from the final QArm tic-tac-toe system.</p>
+  </div>
+
+  <main class="page-wrap">
+    <nav class="local-nav section" aria-label="Result sections">
+      <div class="inner">
+        <a href="#performance">Performance</a>
+        <a href="#accuracy">Placement Accuracy</a>
+        <a href="#vision">Vision Results</a>
+        <a href="#limits">Limitations</a>
+        <a href="#future">Future Improvements</a>
+      </div>
+    </nav>
+
+    <section class="section" id="performance">
+      <h2>Overall performance</h2>
+      <p>
+        The project met its primary goals by producing an autonomous tic-tac-toe robot that integrates robotic motion, camera-based detection, and game logic into one working system. During testing, the QArm repeatedly picked pieces from the staging area, placed them into the correct board cells, and followed the tic-tac-toe algorithm to complete games against a human player.
+      </p>
+    </section>
+
+    <section class="section grid-2" id="accuracy">
+      <div class="card">
+        <h2>Placement accuracy</h2>
+        <p>
+          One of the biggest improvements came from lowering and controlling the release position of the end effector. Early trials dropped tokens from too high above the board, which caused wobble and unstable landings. Adjusting the approach height and placement angle made the token placement more stable and repeatable.
+        </p>
+      </div>
+      <div class="figure">
+        <img src="assets/qarm-team-board.jpg" alt="Full robot and board setup" />
+        <div class="caption">Final board setup that reflects the more stable piece placement behavior achieved later in testing.</div>
+      </div>
+    </section>
+
+    <section class="section" id="vision">
+      <h2>Vision results</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Strong color contrast</h3><p>Gold robot tokens provided much stronger contrast than the earlier gray token concept, which improved board recognition reliability.</p></div>
+        <div class="card"><h3>Contour success</h3><p>Contour-based detection worked well for separated tokens and supported centroid-based board-state interpretation.</p></div>
+        <div class="card"><h3>Occlusion issues</h3><p>Closely aligned or stacked tokens could still be interpreted as one object, and center-cell occupancy could partially hide back-row pieces.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <h2>Observed limitations</h2>
+      <ul>
+        <li>Some moves still required intermediate waypoints to avoid collisions with staged or already placed tokens.</li>
+        <li>The arm speed was acceptable but could still be tuned further.</li>
+        <li>Depth detection was explored but not kept in the final perception chain because the depth contours were too unreliable.</li>
+        <li>User interface testing was mostly limited to the project team.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="future">
+      <h2>Future improvements</h2>
+      <p>
+        The report suggests faster motion tuning, better calibration for variable lighting, stronger object detection for occlusions, expanded user-interface development, and possibly different difficulty settings. Even with those open areas, the final demonstration succeeded as a complete and reliable mechatronics system that can autonomously play tic-tac-toe.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">Results and performance summary for the QArm tic-tac-toe project.</div>
+  </footer>
+</body>
+</html>

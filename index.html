@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QArm Tic-Tac-Toe | Overview</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">QArm Tic-Tac-Toe</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a class="active" href="index.html">Overview</a></li>
+          <li><a href="hardware.html">Hardware</a></li>
+          <li><a href="vision-control.html">Vision & Control</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero-wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="kicker">ME 423 Final Project · Blue vs Gold Tic-Tac-Toe</div>
+        <h1>Autonomous QArm tic-tac-toe robot</h1>
+        <p>
+          This project evolved from a color-sorting robot into an interactive tic-tac-toe system using a Quanser QArm, RGB vision, inverse kinematics, and minimax game logic. The robot uses gold tokens against a human player using blue tokens, creating a mechatronics demonstration that combines motion control, perception, and strategy.
+        </p>
+        <div class="button-row">
+          <a class="button primary" href="hardware.html">Open hardware page</a>
+          <a class="button secondary" href="vision-control.html">See vision and control</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/qarm-team-board.jpg" alt="QArm tic-tac-toe setup with blue and white character tokens on the board" />
+        <div class="hero-caption">Final project setup showing the QArm, the tic-tac-toe board, and the custom printed character pieces.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-intro">
+    <h1>Project overview</h1>
+    <p>Team members, project scope, live demo, and the main system pieces that drive the QArm tic-tac-toe robot.</p>
+  </div>
+
+  <main class="page-wrap">
+    <nav class="local-nav section" aria-label="Page sections">
+      <div class="inner">
+        <a href="#summary">Summary</a>
+        <a href="#team">Team</a>
+        <a href="#demo">Video demo</a>
+        <a href="#system">System overview</a>
+        <a href="#repo">Repository</a>
+      </div>
+    </nav>
+
+    <section class="section" id="summary">
+      <h2>Summary</h2>
+      <p>
+        The original idea was a robotic color segregator, but the scope was expanded into a tic-tac-toe playing robot after feedback that the initial concept was too simple. The final system uses the QArm and its RGB camera to detect the board and piece states, then place the robot's next move based on the current game state. The result combines robotic movement, camera-based detection, and game logic in one platform.
+      </p>
+      <div class="quick-grid" style="margin-top: 1rem;">
+        <div class="quick-card"><div class="quick-value">4 DOF</div><p>Quanser QArm articulated serial manipulator.</p></div>
+        <div class="quick-card"><div class="quick-value">RGB</div><p>Camera-based board and token detection for gameplay state recognition.</p></div>
+        <div class="quick-card"><div class="quick-value">Minimax</div><p>Turn-based strategy algorithm used to choose the robot's best move.</p></div>
+        <div class="quick-card"><div class="quick-value">Blue + Gold</div><p>Blue tokens for the human player and gold tokens for the robot.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <h2>Project team</h2>
+      <div class="team-grid">
+        <div class="team-card"><h3>Erik Heuchert</h3><div class="team-role">Team member</div><p>Contributed to the ME 423 QArm tic-tac-toe final project.</p></div>
+        <div class="team-card"><h3>Lucas Heuchert</h3><div class="team-role">Team member</div><p>Contributed to the ME 423 QArm tic-tac-toe final project.</p></div>
+        <div class="team-card"><h3>Jacky Liang</h3><div class="team-role">Team member</div><p>Contributed to the ME 423 QArm tic-tac-toe final project.</p></div>
+        <div class="team-card"><h3>John Tomas</h3><div class="team-role">Team member</div><p>Contributed to the ME 423 QArm tic-tac-toe final project.</p></div>
+        <div class="team-card"><h3>Matthew Moore</h3><div class="team-role">Team member</div><p>Contributed to the ME 423 QArm tic-tac-toe final project.</p></div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="demo">
+      <div class="video-card">
+        <h2>Embedded video demo</h2>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/aXK9kby8WMA" title="QArm Tic-Tac-Toe demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="hero-caption">Live demo of the robot playing tic-tac-toe.</div>
+      </div>
+      <div class="card">
+        <h3>Why this version is stronger</h3>
+        <p>
+          Compared with the original sorting concept, tic-tac-toe introduced more mechatronics depth. The robot had to perceive board state, solve game logic, and execute precise pick-and-place operations without disturbing existing pieces. That made the final design more interactive and much better aligned with the course goals.
+        </p>
+        <div class="callout">
+          <p>The report emphasizes the project as a blend of mechanics, controls, computer vision, and programming rather than a single-function pick-and-place demo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="system">
+      <h2>System overview</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Robot platform</h3>
+          <p>The QArm provides a 4 degree-of-freedom roll-pitch-pitch-roll arm with a gripper and RGB-D camera, which is a strong fit for repeatable grasping and placement.</p>
+        </div>
+        <div class="card">
+          <h3>Vision stack</h3>
+          <p>OpenCV-based color masking, contour detection, and centroid extraction were used to detect tokens and infer the board state from the RGB camera feed.</p>
+        </div>
+        <div class="card">
+          <h3>Decision logic</h3>
+          <p>A minimax-based game algorithm evaluates the board and selects the robot's next move while helper functions update moves, detect winners, and handle draws.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid-2" id="repo">
+      <div class="card">
+        <h2>Project repository</h2>
+        <p>The report appendix lists the project GitHub repository used for the codebase and implementation files.</p>
+        <div class="button-row">
+          <a class="button primary" href="https://github.com/mattthewmoore/tictactoe_QARM.git" target="_blank" rel="noopener noreferrer">Open GitHub repository</a>
+          <a class="button secondary" href="Actual_Final_Report.docx">Open final report</a>
+        </div>
+      </div>
+      <div class="figure">
+        <img src="assets/qarm-side-camera.jpg" alt="QArm side view and lab setup" />
+        <div class="caption">Lab image used in the website package to help anchor the project context visually.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">QArm Tic-Tac-Toe project website rebuilt in a blue and gold theme using the ME405 site structure as a style reference.</div>
+  </footer>
+</body>
+</html>
