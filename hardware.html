@@ -95,9 +95,6 @@
         <p>
           Forward kinematics were described with a standard Denavit-Hartenberg formulation to map joint angles to end-effector pose. Inverse kinematics were derived geometrically by solving the base angle from the horizontal projection and then reducing the remaining problem to a planar two-link system in the radial-vertical plane.
         </p>
-        <div class="callout">
-          <p>Because wrist rotation mostly changes orientation rather than position, position planning could focus strongly on the first three joints.</p>
-        </div>
       </div>
     </section>
 
@@ -135,9 +132,6 @@
         <p>
           The main hardware problem during gameplay was avoiding collisions with tokens already placed on the board or still waiting in the stage. To prevent that, the team manually taught intermediate positions and then recreated those safe poses through saved joint angles. That added extra path planning without changing the overall move logic.
         </p>
-        <div class="callout">
-          <p>The report specifically notes that the black box under the end effector caused several interference cases, so diagonal and side-step motions were added before lifting and placing tokens.</p>
-        </div>
       </div>
     </section>
   </main>
